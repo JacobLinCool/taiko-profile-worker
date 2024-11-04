@@ -13,8 +13,6 @@ Generate avatars for Taiko no Tatsujin players.
 - `size`: The size of the avatar. Optional. Default: 290. Maximum: 512.
 - `rank`: The player's rank position. Optional. Default: `top-center`. Available: `top-left`, `top-center`, `top-right`, `middle-left`, `middle-center`, `middle-right`, `bottom-left`, `bottom-center`, `bottom-right`, `none`.
 
-```html
-https://taiko-profile.jacob.workers.dev/?id=<id
-  >&rank=<rank>&size=<size>&circle</size></rank></id
->
+```sh
+https://taiko-profile.jacob.workers.dev/?id=<id>&rank=<rank>&size=<size>&circle
 ```
