@@ -1,4 +1,4 @@
-# Taiko Profile Worker
+# Taiko Profile
 
 Generate avatars for Taiko no Tatsujin players.
 
