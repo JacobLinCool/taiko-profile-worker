@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { Position } from '$api/avatar/[id]/GET';
+	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
 
 	let playerId = $state('953144833346');
 	let rankPosition = $state(Position.TopCenter);
@@ -8,11 +10,30 @@
 	let previewUrl: string | null = $state(null);
 	let origin = $state('');
 
-	// Get the current origin when the component mounts
+	// Get the current origin and initialize values from URL
 	$effect(() => {
 		if (typeof window !== 'undefined') {
 			origin = window.location.origin;
+
+			// Get values from URL params
+			const params = $page.url.searchParams;
+			if (params.has('playerId')) playerId = params.get('playerId')!;
+			if (params.has('rankPosition')) rankPosition = params.get('rankPosition') as Position;
+			if (params.has('isCircle')) isCircle = params.get('isCircle') === 'true';
+			if (params.has('size')) size = parseInt(params.get('size')!);
 		}
+	});
+
+	// Update URL when parameters change
+	$effect(() => {
+		const params = new URLSearchParams();
+		params.set('playerId', playerId);
+		params.set('rankPosition', rankPosition);
+		params.set('isCircle', isCircle.toString());
+		params.set('size', size.toString());
+
+		// Update URL without refreshing the page
+		goto(`?${params.toString()}`, { replaceState: true, keepFocus: true });
 	});
 
 	function debounce<T extends (...args: any[]) => any>(
