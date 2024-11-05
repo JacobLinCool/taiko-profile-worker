@@ -2,6 +2,8 @@
 
 Generate avatars for Taiko no Tatsujin players.
 
-[![circle](https://taiko-profile.jacob.workers.dev/?id=953144833346&circle)](https://taiko-profile.jacob.workers.dev/?id=953144833346&circle)
+> Go to <https://taiko-profile.pages.dev/>
 
-[![square](https://taiko-profile.jacob.workers.dev/?id=051574601641)](https://taiko-profile.jacob.workers.dev/?id=051574601641)
+[![circle](https://taiko-profile.pages.dev/avatar/953144833346?circle=1)](https://taiko-profile.pages.dev/avatar/953144833346?circle=1)
+
+[![square](https://taiko-profile.pages.dev/avatar/051574601641)](https://taiko-profile.pages.dev/avatar/051574601641)
