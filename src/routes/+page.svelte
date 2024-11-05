@@ -2,6 +2,7 @@
 	import { Position } from '$api/avatar/[id]/GET';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
+	import Footer from '../components/Footer.svelte';
 
 	let playerId = $state('953144833346');
 	let rankPosition = $state(Position.TopCenter);
@@ -36,7 +37,7 @@
 		goto(`?${params.toString()}`, { replaceState: true, keepFocus: true });
 	});
 
-	function debounce<T extends (...args: any[]) => any>(
+	function debounce<T extends (...args: unknown[]) => unknown>(
 		fn: T,
 		delay: number
 	): (...args: Parameters<T>) => void {
@@ -63,6 +64,30 @@
 
 	const positions = Object.values(Position);
 </script>
+
+<svelte:head>
+	<title>Taiko Avatar Generator</title>
+	<meta name="description" content="Generate custom avatars for Taiko players" />
+
+	<!-- OpenGraph tags -->
+	<meta property="og:title" content="Taiko Avatar Generator" />
+	<meta property="og:description" content="Generate custom avatars for Taiko players" />
+	<meta
+		property="og:image"
+		content={`${$page.url.origin}/avatar/${playerId}?rank=${rankPosition}&circle=${isCircle ? '1' : ''}&size=${size}`}
+	/>
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content={$page.url.href} />
+
+	<!-- Twitter Card tags -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="Taiko Avatar Generator" />
+	<meta name="twitter:description" content="Generate custom avatars for Taiko players" />
+	<meta
+		name="twitter:image"
+		content={`${$page.url.origin}/avatar/${playerId}?rank=${rankPosition}&circle=${isCircle ? '1' : ''}&size=${size}`}
+	/>
+</svelte:head>
 
 <div class="min-h-screen bg-gray-100 px-4 py-8 sm:px-6 lg:px-8">
 	<div class="mx-auto max-w-4xl">
@@ -152,24 +177,6 @@
 			</div>
 		</div>
 
-		<div class="mt-8 text-center text-sm text-gray-500">
-			<div class="space-x-4">
-				<a
-					href={`https://api-spec.pages.dev/x?url=${origin}/openapi.json`}
-					target="_blank"
-					class="text-indigo-600 hover:text-indigo-500"
-				>
-					API Specification
-				</a>
-				<span>•</span>
-				<a
-					href="https://github.com/JacobLinCool/taiko-profile-worker"
-					target="_blank"
-					class="text-indigo-600 hover:text-indigo-500"
-				>
-					GitHub Repository
-				</a>
-			</div>
-		</div>
+		<Footer origin={$page.url.origin} />
 	</div>
 </div>
